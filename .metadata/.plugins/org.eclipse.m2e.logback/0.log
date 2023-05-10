@@ -1,0 +1,2 @@
+2023-05-10 23:13:26,365 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-05-10 23:14:19,040 [Worker-23: https://download.eclipse.org/technology/epp/packages/2022-09/202209081200/artifacts.jar] INFO  o.a.h.c.h.i.c.HttpRequestRetryExec - Recoverable I/O exception (java.net.SocketException) caught when processing request to {s}->https://download.eclipse.org:443
