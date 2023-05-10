@@ -193,7 +193,7 @@ public class KeyExpansionFunctions {
 
       public static int[] MixColumns(int[] state) {
             int[] kq = new int[4];
-            System.out.printf("\nMixColumns\n");
+            // System.out.printf("\nMixColumns\n");
             for (int i = 0; i < 4; i++) {
                   kq[i] = MultiplyColumn(state[i]);
             }
@@ -201,21 +201,4 @@ public class KeyExpansionFunctions {
             return kq;
       }
 
-      public static void main(String[] args) {
-            int w0 = 0x2b7e1516, w1 = 0x28aed2a6, w2 = 0xabf71588, w3 = 0x09cf4f3c;
-            int key[] = { w0, w1, w2, w3 };
-            int state[] = new int[4];
-            state[0] = 0x3243f6a8;
-            state[1] = 0x885a308d;
-            state[2] = 0x313198a2;
-            state[3] = 0xe0370734;
-
-            // int g3 = G(w3, 1);
-            int[] w = KeyExpansion(key);
-
-            state = AddRoundKey(state, key);
-            state = SubBytes(state);
-            state = ShiftRows(state);
-            state = MixColumns(state);
-      }
 }
