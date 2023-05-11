@@ -6,34 +6,35 @@ import keyAlgorithm.KeyAlgorithmFunctions;
 
 public class AesEncryptFunctions {
 
-      public static void ShowMatrix(int[] w) {
-            for (int i = 0; i < w.length; i++) {
-                  System.out.printf("\n\t");
-                  KeyAlgorithmFunctions.ShowWord(w[i]);
-            }
-      }
-
+      // Hàm mã hóa bằng giải thuật AES
       public static int[] AesEncrypt(int[] state, int[] key) {
+            // Thực hiện Mở Rộng Khóa trên khóa đã cho
             int[] w = KeyAlgorithmFunctions.KeyExpansion(key);
-            state = KeyAlgorithmFunctions.AddRoundKey(state, Arrays.copyOfRange(w, 0, 4));
+            // Lấy 4 chỉ số đầu tiên từ mảng mở rộng và thực hiện AddRoundKey
+            state = KeyAlgorithmFunctions.AddRoundKey(state, Arrays.copyOfRange(w, 0, 4)); 
 
+            // Lặp qua 9 vòng mã hóa
             for (int i = 1; i <= 9; i++) {
+                  // Thực hiện SubBytes trong mỗi vòng
                   state = KeyAlgorithmFunctions.SubBytes(state);
+                  // Thực hiện ShiftRows trong mỗi vòng
                   state = KeyAlgorithmFunctions.ShiftRows(state);
+                  // Thực hiện MixColumns trong mỗi vòng
                   state = KeyAlgorithmFunctions.MixColumns(state);
+                  // Thực hiện AddRoundKey trong mỗi vòng dùng các chỉ số tương ứng trong mảng mở
+                  // rộng
                   state = KeyAlgorithmFunctions.AddRoundKey(state, Arrays.copyOfRange(w, i * 4, i * 4 + 4));
-
-                  // System.out.printf("\nRound %d: \n", i);
-                  // ShowMatrix(state);
             }
 
-            // Round 10
+            // Vòng 10 - chỉ thực hiện các hoạt động SubBytes, ShiftRows và AddRoundKey
             state = KeyAlgorithmFunctions.SubBytes(state);
             state = KeyAlgorithmFunctions.ShiftRows(state);
             state = KeyAlgorithmFunctions.AddRoundKey(state, Arrays.copyOfRange(w, 10 * 4, 10 * 4 + 4));
 
             // System.out.printf("\nRound 10: \n");
             // ShowMatrix(state);
+
+            // Trả về kết quả
             int[] kq = new int[4];
             kq = state;
             return kq;
@@ -51,7 +52,7 @@ public class AesEncryptFunctions {
             int[] C = AesEncrypt(state, key);
 
             System.out.printf("\nBan ma: \n");
-            ShowMatrix(C);
+            KeyAlgorithmFunctions.ShowMatrix(C);
       }
 
 }

@@ -1,0 +1,20 @@
+package test;
+
+import string_Encrypt_Decrypt.*;
+import string_Encrypt_Decrypt.StringEncryptFunction;
+
+public class Test {
+	public static void main(String[] args) {
+		String plainText = "Le Hoang Nam";
+		String keyText = "IUH";
+
+		String encryptedMsg = StringEncryptFunction.EncryptString(plainTextToHexString(plainText),
+				plainTextToHexString(keyText));
+		String decryptedMsg = StringEncryptFunction.DecryptString(encryptedMsg, plainTextToHexString(keyText));
+
+		System.out.println("Plain text: " + plainText);
+		System.out.println("Key text: " + keyText);
+		System.out.println("Encrypted message: " + encryptedMsg);
+		System.out.println("Decrypted message: " + hexToString(decryptedMsg));
+	}
+}
